@@ -1,11 +1,20 @@
 package ctfflag
 
-import "fmt"
+func FetchFlag(password string) string {
+	pass := []byte{96, 47, 54, 54, 97, 47, 53, 51, 52, 100, 56, 51, 54, 47, 53, 51, 49, 50, 52, 53, 48, 48, 98, 98, 52, 53, 96, 96, 97, 97, 48, 55}
+	flag := []byte{101, 107, 96, 102, 122, 102, 110, 94, 102, 110, 94, 102, 96, 99, 102, 100, 115, 94, 102, 104, 115, 103, 116, 97, 94, 106, 100, 120, 124}
 
-func FetchFlag(password string) {
-	pass := []byte{97, 48, 55, 55, 98, 48, 54, 52, 53, 101, 57, 52, 55, 48, 54, 52, 50, 51, 53, 54, 49, 49, 99, 99, 53, 54, 97, 97, 98, 98, 49, 56}
-	flag := []byte{102, 108, 97, 103, 123, 103, 111, 95, 103, 111, 95, 103, 97, 100, 103, 101, 116, 95, 103, 105, 116, 104, 117, 98, 95, 107, 101, 121, 125}
-	if password == string(pass) {
-		fmt.Println(string(flag))
+	for i, c := range pass {
+		pass[i] = c + 1
 	}
+
+	for i, c := range flag {
+		flag[i] = c + 1
+	}
+
+	if password == string(pass) {
+		return string(flag)
+	}
+
+	return ""
 }
